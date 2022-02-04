@@ -13,10 +13,20 @@ public class CSVReader {
     private String filePath;
     private String[] headers;
 
+    /**
+     * Create a new CSV Reader with a file path to the file to read
+     * 
+     * @param filePath file path of csv document
+     */
     public CSVReader(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Start the reader
+     * 
+     * @return true if reader started successfully
+     */
     public boolean startReader() {
         this.file = new File(filePath);
 
@@ -35,10 +45,20 @@ public class CSVReader {
         }
     }
 
+    /**
+     * Get the Headers for the file
+     * 
+     * @return array of headers
+     */
     public String[] getHeaders() {
         return this.headers;
     }
 
+    /**
+     * Get the next line from the csv file
+     * 
+     * @return array of next line
+     */
     public String[] getNextLine() {
         try {
             String line = reader.readLine();
@@ -47,6 +67,21 @@ public class CSVReader {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * Close the reader
+     * 
+     * @return true if closed successfully
+     */
+    public boolean closeReader() {
+        try {
+            reader.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
